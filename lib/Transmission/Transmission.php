@@ -345,4 +345,32 @@ class Transmission
     {
         return $this->validator;
     }
+
+    /**
+     * @param  integer $id
+     * @param  array   $indexes
+     *
+     * @return \stdClass
+     */
+    public function fileWanted($id, $indexes)
+    {
+        return $this->getClient()->call('torrent-set', array(
+            'files-wanted' => $indexes,
+            'ids'    => array($id)
+        ));
+    }
+
+    /**
+     * @param  integer $id
+     * @param  array   $indexes
+     *
+     * @return \stdClass
+     */
+    public function fileUnwanted($id, $indexes)
+    {
+        return $this->getClient()->call('torrent-set', array(
+            'files-unwanted' => $indexes,
+            'ids'    => array($id)
+        ));
+    }
 }
